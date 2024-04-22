@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1000/xhtml">
+  <head th:replace="common/header :: common-header" />
+  
+  <body>
+    <div th:replace="common/header :: navbar" />
+	
+	<!-- Section start -->
+	<section class="bobo">
+		<div class="container">
+		My Profile page
+		<h2><span th:text="${#strings.toUpperCase{user.username}"></span></h2>
+		</div>
+	</section>
+	<!-- Section end -->
+	
+	<!-- Section start -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<ul class="nav nav-tabs">
+					  <li class="nav-item" th:classappend="${classActiveEdit}? 'active">
+					    <a class="nav-link active" href="#tab-1">Edit</a>
+					  </li>
+					  <li class="nav-item" th:classappend="${classActiveOrders}? 'active">
+					    <a class="nav-link" href="#tab-2">Orders</a>
+					  </li>
+					  <li class="nav-item" th:classappend="${classActiveBilling}? 'active">
+					    <a class="nav-link" href="#tab-3">Billing</a>
+					  </li>
+					  <li class="nav-item" th:classappend="${classActiveShipping}? 'active">
+					    <a class="nav-link" href="#tab-4">Shipping</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="col-lg-9">
+					<div class="tab-content">
+						<div id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
+							<h2>Edit Form</h2>
+							<form th:action="@{/updateUserInfo}" method="post">
+							<input type="hidden" name="id" th:value="${user.id}">
+							<div class="bg-info" th:if="${updateUserInfo}">User Info Updated!!</div>
+							<div class="form-group">
+							    <label for="firstname">First Name</label>
+							    <input type="text" class="form-control" id="firstname" name="firstname" th:value="${user.firstname}" />  
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="lastname">Last Name</label>
+							    <input type="text" class="form-control" id="lastname" name="lastname" th:value="${user.lastname}" />  
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="username">Username</label>
+							    <input type="text" class="form-control" id="username" name="username" th:value="${user.username}" />  
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="currentpassword">Current Password</label>
+							    <input type="password" class="form-control" id="currentpassword" name="currentpassword" th:value="${currentpassword}">
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="email">Email address</label>
+							    <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" aria-describedby="emailHelp">
+							    <small id="emailHelp" class="form-text text-muted">Enter your email address to change password.</small>
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="newpassword">Password</label>
+							    <input type="password" class="form-control" id="newpassword" name="newpassword">
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="confirmpassword">Password</label>
+							    <input type="password" class="form-control" id="confirmpassword">
+							  </div>
+							  
+							  <div class="form-group form-check">
+							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+							    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+							  </div>
+							  <button type="submit" class="btn btn-primary">Update</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Section end -->
+	
+
+    <div th:replace="common/header :: body-bottom-scripts" />
+  </body>
+</html>
